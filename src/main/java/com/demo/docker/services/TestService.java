@@ -1,4 +1,4 @@
-package com.demo.docker.service;
+package com.demo.docker.services;
 
 import com.demo.docker.entity.TestEntity;
 import com.demo.docker.repository.TestRepository;
@@ -19,7 +19,7 @@ public class TestService {
     }
 
     public TestEntity findById(UUID id) {
-        return testRepository.findById(id).orElse(null);
+        return testRepository.findById(id).orElseThrow();
     }
 
     public List<TestEntity> findAll() {
