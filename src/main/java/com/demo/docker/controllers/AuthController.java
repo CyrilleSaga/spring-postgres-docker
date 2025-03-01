@@ -4,15 +4,18 @@ import com.demo.docker.dto.request.LoginRequest;
 import com.demo.docker.dto.request.RegisterRequest;
 import com.demo.docker.dto.response.LoginResponse;
 import com.demo.docker.entity.UserEntity;
+import com.demo.docker.exceptions.EmailAlreadyUserException;
 import com.demo.docker.services.AuthService;
 import com.demo.docker.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -23,7 +26,14 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<UserEntity> register(@RequestBody RegisterRequest registerDTO) {
-        UserEntity registeredUser = authService.signup(registerDTO);
+        log.info("Rest API to register a new user");
+
+        // Check if the email is already in use
+        if (authService.isEmailAlreadyInUse(registerDTO.getEmail())) {
+            throw new EmailAlreadyUserException("The email is already in use");
+        }
+
+        UserEntity registeredUser = authService.register(registerDTO);
         return ResponseEntity.ok(registeredUser);
     }
 

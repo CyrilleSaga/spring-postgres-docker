@@ -10,5 +10,5 @@ spring:
 
 security:
   jwt:
-    secret: 3cfa76ef14937c1c0ea519f8fc057a87hp404a7420f8e8bcd0a7567c272e007b
+    secret: 9baac7a3679dd31dc387a38682fa5066f4fed914ac7a3679dd31dc387a386829ba94fdcffbd294fdcffbd2860a925e5e7172860a925e5e7172fa5066f4fed914
     expiration: 60000 # 1 minute
