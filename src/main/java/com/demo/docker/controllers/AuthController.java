@@ -1,5 +1,6 @@
 package com.demo.docker.controllers;
 
+import com.demo.docker.dto.UserDTO;
 import com.demo.docker.dto.request.LoginRequest;
 import com.demo.docker.dto.request.RegisterRequest;
 import com.demo.docker.dto.response.LoginResponse;
@@ -25,7 +26,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserEntity> register(@RequestBody RegisterRequest registerDTO) {
+    public ResponseEntity<UserDTO> register(@RequestBody RegisterRequest registerDTO) {
         log.info("Rest API to register a new user");
 
         // Check if the email is already in use
@@ -33,7 +34,7 @@ public class AuthController {
             throw new EmailAlreadyUserException("The email is already in use");
         }
 
-        UserEntity registeredUser = authService.register(registerDTO);
+        UserDTO registeredUser = authService.register(registerDTO);
         return ResponseEntity.ok(registeredUser);
     }
 

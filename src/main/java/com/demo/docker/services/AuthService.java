@@ -1,5 +1,6 @@
 package com.demo.docker.services;
 
+import com.demo.docker.dto.UserDTO;
 import com.demo.docker.dto.request.LoginRequest;
 import com.demo.docker.dto.request.RegisterRequest;
 import com.demo.docker.entity.UserEntity;
@@ -12,7 +13,7 @@ public interface AuthService {
      * @param request the request object
      * @return the registered user
      */
-    UserEntity register(RegisterRequest request);
+    UserDTO register(RegisterRequest request);
 
     /**
      * Authenticate a user
