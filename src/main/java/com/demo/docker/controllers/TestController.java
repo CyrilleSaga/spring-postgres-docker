@@ -1,7 +1,7 @@
 package com.demo.docker.controllers;
 
 import com.demo.docker.entity.TestEntity;
-import com.demo.docker.service.TestService;
+import com.demo.docker.services.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +16,7 @@ public class TestController {
     private final TestService testService;
 
     @PostMapping("/")
-    public ResponseEntity<TestEntity> save() {
-        TestEntity testEntity = TestEntity.builder()
-                .name("Test")
-                .description("Test description")
-                .build();
+    public ResponseEntity<TestEntity> save(@RequestBody TestEntity testEntity) {
         return ResponseEntity.ok(testService.save(testEntity));
     }
 
