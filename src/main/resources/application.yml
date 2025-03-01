@@ -6,4 +6,9 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+    open-in-view: false
+
+security:
+  jwt:
+    secret: 9baac7a3679dd31dc387a38682fa5066f4fed914ac7a3679dd31dc387a386829ba94fdcffbd294fdcffbd2860a925e5e7172860a925e5e7172fa5066f4fed914
+    expiration: 60000 # 1 minute
