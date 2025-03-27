@@ -17,8 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
@@ -59,8 +57,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean isEmailAlreadyInUse(String email) {
-        Optional<UserEntity> user = userRepository.findByEmail(email);
-        return user.isPresent();
+        return userRepository.findByEmail(email).isPresent();
     }
 
 }
